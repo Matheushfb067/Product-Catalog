@@ -102,8 +102,8 @@ function Cart() {
 
   return (
     <div className="flex flex-1 flex-col w-full min-h-screen">
-      <header className="w-full justify-between flex px-4 bg-gradient-to-l from-purple-600 to-blue-700 py-4 text-white font-bold">
-        <h1>Fake-Store</h1>
+      <header className="w-full justify-between flex px-4 bg-gradient-to-l from-purple-600 to-blue-700 py-4 text-white font-bold font-mono">
+        <h1 className="text-2xl">Scoder-Tech-Store</h1>
         <button
           onClick={goToHome}
           className="hover:text-blue-300 cursor-pointer transition-colors"

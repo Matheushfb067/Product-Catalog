@@ -37,61 +37,70 @@ const Home = () => {
   if (loading) return <p>Loading products...</p>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white font-mono">
       <header className="w-full flex items-center justify-between px-4 bg-gradient-to-l from-blue-700 to-purple-950 py-4 text-white font-bold fixed z-50">
-        <h1 className="text-2xl">Fake-Store</h1>
-        <div className="flex-1 flex justify-center">
-          <House
-            strokeWidth={3}
+        <h1 className="text-2xl">Scoder-Tech-Store</h1>
+        <div className="flex-1 flex justify-end gap-4 mx-2">
+          <button
+            onClick={() => window.location.reload()}
             className="transition-colors duration-200 cursor-pointer hover:text-blue-300"
-          />
+            aria-label="Refresh Home"
+          >
+            <House strokeWidth={3} />
+          </button>
+          <button
+            onClick={goToCart}
+            className="relative"
+            aria-label="Go to Cart"
+          >
+            <ShoppingCart
+              strokeWidth={3}
+              className="transition-colors duration-200 cursor-pointer hover:text-blue-300"
+            />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </button>
         </div>
-        <button onClick={goToCart} className="relative">
-          <ShoppingCart
-            strokeWidth={3}
-            className="transition-colors duration-200 cursor-pointer hover:text-blue-300"
-          />
-          {cartCount > 0 && (
-            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
-              {cartCount}
-            </span>
-          )}
-        </button>
       </header>
 
       <main className="flex-1 flex flex-col gap-6 px-5 sm:px-10 mb-8 pt-20">
         <section className="flex flex-col items-center justify-center rounded-2xl mx-auto w-full max-w-7xl px-6 my-4 py-12 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-400 shadow-lg">
           <div className="flex flex-col items-center mb-10">
-            <h1 className="text-4xl font-extrabold text-white mb-3 drop-shadow-lg">
-              Fake-Store
+            <h1 className="text-2xl font-extrabold text-white mb-3 drop-shadow-lg">
+              Scoder-Tech-Store
             </h1>
             <p className="text-xl text-blue-100 text-center max-w-2xl font-medium drop-shadow">
               Discover the best products with amazing prices and fast delivery.
             </p>
           </div>
-          <div className="flex flex-col gap-10 sm:flex-row sm:gap-20 items-center justify-center w-full">
-            <div className="flex flex-col items-center">
-              <Truck className="size-16 text-yellow-300 mb-3 drop-shadow-lg" />
-              <h2 className="font-bold text-white text-lg">Fast Delivery</h2>
-              <p className="text-blue-100 text-center">
-                Receive your products within 5 days
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <Shield className="size-16 text-green-300 mb-3 drop-shadow-lg" />
-              <h2 className="font-bold text-white text-lg">
-                100% Secure Checkout
-              </h2>
-              <p className="text-blue-100 text-center">
-                SSL encryption keeps your data safe
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <Headphones className="size-16 text-pink-300 mb-3 drop-shadow-lg" />
-              <h2 className="font-bold text-white text-lg">24/7 Support</h2>
-              <p className="text-blue-100 text-center">
-                Always available assistance
-              </p>
+          <div className="flex flex-col gap-10 sm:flex-row sm:gap-20 items-center justify-center w-full ">
+            <div className="grid grid-cols-1 sm:grid-cols-3">
+              <div className="flex flex-col items-center">
+                <Truck className="size-16 text-yellow-300 mb-3 drop-shadow-lg w-65" />
+                <h2 className="font-bold text-white text-lg">Fast Delivery</h2>
+                <p className="text-blue-100 text-center">
+                  Receive your products within 5 days
+                </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Shield className="size-16 text-green-300 mb-3 drop-shadow-lg w-65" />
+                <h2 className="font-bold text-white text-lg">
+                  100% Secure Checkout
+                </h2>
+                <p className="text-blue-100 text-center">
+                  SSL encryption keeps your data safe
+                </p>
+              </div>
+              <div className="flex flex-col items-center ">
+                <Headphones className="size-16 text-pink-300 mb-3 drop-shadow-lg w-65" />
+                <h2 className="font-bold text-white text-lg">24/7 Support</h2>
+                <p className="text-blue-100 text-center">
+                  Always available assistance
+                </p>
+              </div>
             </div>
           </div>
         </section>
