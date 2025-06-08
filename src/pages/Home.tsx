@@ -1,19 +1,18 @@
-import {
-  ShoppingCart,
-  Instagram,
-  Facebook,
-  Twitter,
-  PhoneCall,
-} from "lucide-react";
+import { ShoppingCart, House } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import type { Product } from "../types/product";
 import Card from "../Components/Card";
-import Cart from "../pages/Cart";
+import { useNavigate } from "react-router-dom";
+import Footer from "../Components/Footer";
 
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const goToCart = () => {
+    navigate("/cart");
+  };
 
   useEffect(() => {
     axios
@@ -29,8 +28,8 @@ const Home = () => {
     <div className="min-h-screen flex flex-col bg-black/10">
       <header className="w-full justify-between flex px-4 bg-gradient-to-l from-purple-600 to-blue-700 py-4 text-white font-bold">
         <h1>Fake-Store</h1>
-        <h2>Home</h2>
-        <button>
+        <House strokeWidth={3} />
+        <button onClick={goToCart}>
           <ShoppingCart strokeWidth={3} />
         </button>
       </header>
@@ -48,29 +47,7 @@ const Home = () => {
       </main>
 
       {/* Footer colado no fim da tela */}
-      <footer className="mt-auto w-full flex flex-col px-4 bg-gray-900 text-white py-5 min-h-full">
-        <h1 className="text-blue-400 text-lg font-bold mb-2">Fake-Store</h1>
-        <p className="mb-4">
-          Your online store with the best products and prices on the market.
-        </p>
-        <h1 className="text-blue-400 text-lg font-bold mb-4">Contacts</h1>
-        <div className="flex items-center gap-2">
-          <PhoneCall />
-          <p className="mb-4">(XX) XXXX-XXXX</p>
-        </div>
-        <div className="flex flex-row px-2 gap-3 mb-4">
-          <Instagram strokeWidth={1.5} size={24} />
-          <Facebook strokeWidth={1.5} size={24} />
-          <Twitter strokeWidth={1.5} size={24} />
-        </div>
-        <div className="border-t border-white/20 pt-4">
-          {" "}
-          {/* Linha sutil */}
-          <p className="text-lg text-white/80 flex justify-center items-center">
-            © 2024 TechStore. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
