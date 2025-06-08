@@ -1,5 +1,5 @@
-import { ShoppingCart, House } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { ShoppingCart, House, Truck, Shield, Headphones } from "lucide-react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Product } from "../types/product";
 import Card from "../Components/Card";
@@ -10,8 +10,18 @@ const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [cartCount, setCartCount] = useState(0);
   const goToCart = () => {
     navigate("/cart");
+  };
+
+  const updateCartCount = () => {
+    const storedCart = localStorage.getItem("cart");
+    const cart: { [key: number]: number } = storedCart
+      ? JSON.parse(storedCart)
+      : {};
+    const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+    setCartCount(totalItems);
   };
 
   useEffect(() => {
@@ -20,28 +30,79 @@ const Home = () => {
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
+
+    updateCartCount();
   }, []);
 
   if (loading) return <p>Loading products...</p>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-black/10">
-      <header className="w-full justify-between flex px-4 bg-gradient-to-l from-purple-600 to-blue-700 py-4 text-white font-bold">
-        <h1>Fake-Store</h1>
-        <House strokeWidth={3} />
-        <button onClick={goToCart}>
-          <ShoppingCart strokeWidth={3} />
+    <div className="min-h-screen flex flex-col bg-white">
+      <header className="w-full flex items-center justify-between px-4 bg-gradient-to-l from-blue-700 to-purple-950 py-4 text-white font-bold fixed z-50">
+        <h1 className="text-2xl">Fake-Store</h1>
+        <div className="flex-1 flex justify-center">
+          <House
+            strokeWidth={3}
+            className="transition-colors duration-200 cursor-pointer hover:text-blue-300"
+          />
+        </div>
+        <button onClick={goToCart} className="relative">
+          <ShoppingCart
+            strokeWidth={3}
+            className="transition-colors duration-200 cursor-pointer hover:text-blue-300"
+          />
+          {cartCount > 0 && (
+            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
+              {cartCount}
+            </span>
+          )}
         </button>
       </header>
 
-      <main className="flex-1 flex flex-col gap-6 px-5 sm:px-10 mb-8">
-        <h1 className="flex w-full justify-center p-2 text-2xl font-bold">
+      <main className="flex-1 flex flex-col gap-6 px-5 sm:px-10 mb-8 pt-20">
+        <section className="flex flex-col items-center justify-center rounded-2xl mx-auto w-full max-w-7xl px-6 my-4 py-12 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-400 shadow-lg">
+          <div className="flex flex-col items-center mb-10">
+            <h1 className="text-4xl font-extrabold text-white mb-3 drop-shadow-lg">
+              Fake-Store
+            </h1>
+            <p className="text-xl text-blue-100 text-center max-w-2xl font-medium drop-shadow">
+              Discover the best products with amazing prices and fast delivery.
+            </p>
+          </div>
+          <div className="flex flex-col gap-10 sm:flex-row sm:gap-20 items-center justify-center w-full">
+            <div className="flex flex-col items-center">
+              <Truck className="size-16 text-yellow-300 mb-3 drop-shadow-lg" />
+              <h2 className="font-bold text-white text-lg">Fast Delivery</h2>
+              <p className="text-blue-100 text-center">
+                Receive your products within 5 days
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Shield className="size-16 text-green-300 mb-3 drop-shadow-lg" />
+              <h2 className="font-bold text-white text-lg">
+                100% Secure Checkout
+              </h2>
+              <p className="text-blue-100 text-center">
+                SSL encryption keeps your data safe
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Headphones className="size-16 text-pink-300 mb-3 drop-shadow-lg" />
+              <h2 className="font-bold text-white text-lg">24/7 Support</h2>
+              <p className="text-blue-100 text-center">
+                Always available assistance
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <h1 className="flex w-full justify-center p-2 text-4xl font-bold bg-gradient-to-r from-blue-800 via-purple-800 to-blue-800 bg-clip-text text-transparent">
           Featured Products
         </h1>
 
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-col-6 gap-4 justify-center overflow-auto sm:mx-10 mx-5 pb-2 px-2">
           {products.map((product) => (
-            <Card products={product} key={product.id} />
+            <Card products={product} key={product.id} onBuy={updateCartCount} />
           ))}
         </div>
       </main>

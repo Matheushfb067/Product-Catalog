@@ -1,5 +1,4 @@
-import React from "react";
-import { Instagram, Facebook, Twitter, Phone, Mail } from "lucide-react";
+import { Instagram, Facebook, Linkedin, Phone, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -11,9 +10,39 @@ const Footer = () => {
             Your online store with the best products and prices on the market.
           </p>
           <div className="flex flex-row gap-3 mb-4">
-            <Instagram strokeWidth={1.5} size={24} />
-            <Facebook strokeWidth={1.5} size={24} />
-            <Twitter strokeWidth={1.5} size={24} />
+            <a
+              href="https://www.instagram.com/scoder.tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram
+                strokeWidth={1.5}
+                size={24}
+                className="cursor-pointer hover:text-blue-500"
+              />
+            </a>
+            <a
+              href="https://www.facebook.com/share/1GCN7ZjxZA/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Facebook
+                strokeWidth={1.5}
+                size={24}
+                className="cursor-pointer hover:text-blue-500"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/scoder-tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Linkedin
+                strokeWidth={1.5}
+                size={24}
+                className="cursor-pointer hover:text-blue-500"
+              />
+            </a>
           </div>
         </div>
         <div>
@@ -21,7 +50,7 @@ const Footer = () => {
           <div className="flex items-start gap-2 flex-col">
             <div className="flex flex-row gap-2">
               <Phone />
-              <p className="mb-1">(XX) XXXX-XXXX</p>
+              <p className="mb-1">+55 (35) 9829-8614</p>
             </div>
             <div className="flex flex-row gap-2">
               <Mail />
@@ -34,7 +63,7 @@ const Footer = () => {
         {" "}
         {/* Linha sutil */}
         <p className="text-lg text-white/80 flex justify-center items-center">
-          © 2024 TechStore. All rights reserved.
+          © 2024 Fake-Store. All rights reserved.
         </p>
       </div>
     </footer>
