@@ -26,7 +26,7 @@ This is a simple e-commerce application built with React, Vite, TypeScript, and 
 
 - 📦 FakeStoreAPI (product data)
 
-- 🤖 v0 by Vercel (AI integration)
+- 🤖 v0 by Vercel (A.I.)
 
 🔗 Live Demo
 👉 https://product-catalog-rose-five.vercel.app
