@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white font-mono">
       <header className="w-full flex items-center justify-between px-4 bg-gradient-to-l from-blue-700 to-purple-950 py-4 text-white font-bold fixed z-50">
-        <h1 className="text-2xl">Tech-Store</h1>
+        <h1 className="text-2xl">Scoder-Tech-Store</h1>
         <div className="flex-1 flex justify-end gap-4 mx-2">
           <button
             onClick={() => window.location.reload()}
@@ -70,7 +70,7 @@ const Home = () => {
         <section className="flex flex-col items-center justify-center rounded-2xl mx-auto w-full max-w-7xl px-6 my-4 py-12 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-400 shadow-lg">
           <div className="flex flex-col items-center mb-10">
             <h1 className="text-2xl font-extrabold text-white mb-3 drop-shadow-lg">
-              Tech-Store
+              Scoder-Tech-Store
             </h1>
             <p className="text-xl text-blue-100 text-center max-w-2xl font-medium drop-shadow">
               Discover the best products with amazing prices and fast delivery.
